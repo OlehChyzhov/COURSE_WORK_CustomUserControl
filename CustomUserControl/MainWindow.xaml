@@ -4,11 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomUserControl"
-        xmlns:c="clr-namespace:CustomUserControl.UserControls"
+        xmlns:c="clr-namespace:CustomControlsLibrary;assembly=CustomControlsLibrary"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="900">
-    <Grid>
-        <c:RadioButtonGroup Width="400" Height="100" 
-                            Grid.Row="0" Grid.Column="0"/>
-    </Grid>
+    <UniformGrid Rows="1">
+
+        <c:RadioButtonGroup Height="200" Width="370" 
+                            Columns="2"
+                            Foreground="Orange" 
+                            FontSize="19"
+                            FontWeight="Bold"
+                            Title="My Title"
+                            RadioButtonSelected="ShowInfo">
+            <c:RadioButtonGroup.RadioButtons>
+                <RadioButton Content="Button1"/>
+                <RadioButton Content="Button2"/>
+                <RadioButton Content="Button3"/>
+                <RadioButton Content="Button4"/>
+                <RadioButton Content="Button5"/>
+            </c:RadioButtonGroup.RadioButtons>
+        </c:RadioButtonGroup>
+    </UniformGrid>
 </Window>
