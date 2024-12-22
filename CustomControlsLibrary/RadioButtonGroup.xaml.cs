@@ -1,12 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace CustomControlsLibrary
 {
-    [ToolboxBitmap(typeof(RadioButtonGroup), "Assets.RadioButtonGroup.bmp")] // Не змінює іконку
+    [ToolboxBitmap(typeof(RadioButtonGroup), "CustomControlsLibrary.Assets.RadioButtonGroup.bmp")]
     public partial class RadioButtonGroup : UserControl
     {
         public RadioButtonGroup()
@@ -18,10 +20,10 @@ namespace CustomControlsLibrary
         // TODO: підписати всі кнопки до події.
         [Category("Custom Events")]
         [Description("Executes when the radiobutton is selected.")]
-        public event EventHandler<RadioButtonGroupEventArgs>? RadioButtonSelected;
+        public event EventHandler<RadioButtonGroupEventArgs> RadioButtonSelected;
 
         #region Dependency Properties
-        public static DependencyProperty TitleProperty = DependencyProperty.RegisterAttached(nameof(Title), typeof(string), 
+        public static DependencyProperty TitleProperty = DependencyProperty.RegisterAttached(nameof(Title), typeof(string),
             typeof(RadioButtonGroup), new PropertyMetadata("RadioButton Group"));
 
         public static DependencyProperty TitleVisibilityProperty = DependencyProperty.RegisterAttached(nameof(TitleVisibility), typeof(Visibility),
@@ -34,7 +36,7 @@ namespace CustomControlsLibrary
         #region Properties
         [Category("Custom Properties")]
         [Description("Collection of radio buttons.")]
-        public ObservableCollection<RadioButton> RadioButtons { get; } = new();
+        public ObservableCollection<RadioButton> RadioButtons { get; } = new ObservableCollection<RadioButton>();
 
         [Category("Appearance")]
         [Description("Text displayed at the top of radiobutton group.")]
@@ -62,7 +64,7 @@ namespace CustomControlsLibrary
         #endregion
 
         #region Methods
-        private void OnRadioButtonChecked(object sender, EventArgs? e)
+        private void OnRadioButtonChecked(object sender, EventArgs e)
         {
             RadioButton button = (RadioButton)sender;
             RadioButtonSelected?.Invoke(this, new RadioButtonGroupEventArgs() { Button = button });

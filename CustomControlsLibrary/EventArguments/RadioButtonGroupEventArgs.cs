@@ -1,9 +1,10 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 
 namespace CustomControlsLibrary
 {
     public class RadioButtonGroupEventArgs : EventArgs
     {
-        public required RadioButton Button { get; init; }
+        public RadioButton Button { get; set; }
     }
 }

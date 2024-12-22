@@ -6,23 +6,8 @@
         xmlns:local="clr-namespace:CustomUserControl"
         xmlns:c="clr-namespace:CustomControlsLibrary;assembly=CustomControlsLibrary"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="900">
-    <UniformGrid Rows="1">
-
-        <c:RadioButtonGroup Height="200" Width="370" 
-                            Columns="2"
-                            Foreground="Orange" 
-                            FontSize="19"
-                            FontWeight="Bold"
-                            Title="My Title"
-                            RadioButtonSelected="ShowInfo">
-            <c:RadioButtonGroup.RadioButtons>
-                <RadioButton Content="Button1"/>
-                <RadioButton Content="Button2"/>
-                <RadioButton Content="Button3"/>
-                <RadioButton Content="Button4"/>
-                <RadioButton Content="Button5"/>
-            </c:RadioButtonGroup.RadioButtons>
-        </c:RadioButtonGroup>
-    </UniformGrid>
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <c:RadioButtonGroup/>
+    </Grid>
 </Window>
