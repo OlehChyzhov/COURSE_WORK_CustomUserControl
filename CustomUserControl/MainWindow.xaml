@@ -8,6 +8,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <c:RadioButtonGroup/>
+        <c:RadioButtonGroup Columns="2" Width="200" Height="200" RadioButtonChecked="Print">
+            <c:RadioButtonGroup.RadioButtons>
+                <RadioButton Content="Button 1"/>
+                <RadioButton Content="Button 2"/>
+                <RadioButton Content="Button 3"/>
+                <RadioButton Content="Button 4"/>
+                <RadioButton Content="Button 5"/>
+                <RadioButton Content="Button 6"/>
+                <RadioButton Content="Button 7"/>
+                <RadioButton Content="Button 8"/>
+            </c:RadioButtonGroup.RadioButtons>
+        </c:RadioButtonGroup>
     </Grid>
 </Window>

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.CodeDom;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -15,12 +18,12 @@ namespace CustomControlsLibrary
         {
             InitializeComponent();
             this.DataContext = this;
+            RadioButtons.CollectionChanged += OnRadioButtonsChanged;
         }
 
-        // TODO: підписати всі кнопки до події.
         [Category("Custom Events")]
         [Description("Executes when the radiobutton is selected.")]
-        public event EventHandler<RadioButtonGroupEventArgs> RadioButtonSelected;
+        public event EventHandler<RadioButtonGroupEventArgs> RadioButtonChecked;
 
         #region Dependency Properties
         public static DependencyProperty TitleProperty = DependencyProperty.RegisterAttached(nameof(Title), typeof(string),
@@ -34,6 +37,15 @@ namespace CustomControlsLibrary
         #endregion
 
         #region Properties
+        private RadioButton selectedRadiobutton;
+
+        [Category("Custom Properties")]
+        [Description("Index of the selected radiobutton.")]
+        public int SelectedRadiobuttonIndex
+        {
+            get => RadioButtons.IndexOf(selectedRadiobutton);
+        }
+
         [Category("Custom Properties")]
         [Description("Collection of radio buttons.")]
         public ObservableCollection<RadioButton> RadioButtons { get; } = new ObservableCollection<RadioButton>();
@@ -64,27 +76,51 @@ namespace CustomControlsLibrary
         #endregion
 
         #region Methods
+        // Викликає подію. Передає групу, яка викликала подію, і кнопку, яка була вибрана користувачем.
         private void OnRadioButtonChecked(object sender, EventArgs e)
         {
             RadioButton button = (RadioButton)sender;
-            RadioButtonSelected?.Invoke(this, new RadioButtonGroupEventArgs() { Button = button });
+            selectedRadiobutton = button;
+
+            RadioButtonChecked.Invoke(this, new RadioButtonGroupEventArgs() { Button = button });
+        }
+
+        // Коли користувач додає нову кнопку, то цей метод перезаписує метод Click усіх кнопок.
+        private void OnRadioButtonsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            foreach (RadioButton button in RadioButtons)
+            {
+                button.GroupName = Title;
+                UnsubscribeTo(button);
+                SubscribeTo(button);
+            }
+        }
+
+        private void SubscribeTo(RadioButton radioButton)
+        {
+            radioButton.Checked += OnRadioButtonChecked;
+        }
+        private void UnsubscribeTo(RadioButton radioButton)
+        {
+            radioButton.Checked -= OnRadioButtonChecked;
         }
 
         [Category("Custom Methods")]
         [Description("Adds a radio button to the group.")]
         public void Add(RadioButton button)
         {
-            button.Checked += OnRadioButtonChecked;
+            SubscribeTo(button);
             button.GroupName = Title;
             RadioButtons.Add(button);
         }
 
         [Category("Custom Methods")]
         [Description("Removes radio buttons matching a given filter.")]
-        public void Remove(Func<RadioButton, bool> filter)
+        public void RemoveButtons(Func<RadioButton, bool> filter)
         {
             foreach (RadioButton button in RadioButtons.Where(filter))
             {
+                UnsubscribeTo(button);
                 RadioButtons.Remove(button);
             }
         }
