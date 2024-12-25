@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomControlsLibrary.SmartTags.Designers;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using System.Windows.Controls;
 namespace CustomControlsLibrary
 {
     [ToolboxBitmap(typeof(RadioButtonGroup), "CustomControlsLibrary.RadioButtonGroup.bmp")]
+    [Designer(typeof(RadiobuttonGroupDesigner))]
     public partial class RadioButtonGroup : UserControl
     {
         public RadioButtonGroup()
