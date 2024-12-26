@@ -1,10 +1,8 @@
-﻿using CustomControlsLibrary.SmartTags.Designers;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,7 +17,7 @@ namespace CustomControlsLibrary
         {
             InitializeComponent();
             this.DataContext = this;
-            RadioButtons.CollectionChanged += OnRadioButtonsChanged;
+            RadioButtons.CollectionChanged += SubscribeAllButtons;
         }
 
         [Category("Custom Events")]
@@ -87,7 +85,7 @@ namespace CustomControlsLibrary
         }
 
         // Коли користувач додає нову кнопку, то цей метод перезаписує метод Click усіх кнопок.
-        private void OnRadioButtonsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void SubscribeAllButtons(object sender, NotifyCollectionChangedEventArgs e)
         {
             foreach (RadioButton button in RadioButtons)
             {

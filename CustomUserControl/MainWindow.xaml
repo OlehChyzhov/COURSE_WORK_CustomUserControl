@@ -8,16 +8,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <c:RadioButtonGroup Columns="2" Width="200" Height="200" RadioButtonChecked="Print">
+        <c:RadioButtonGroup Columns="2" Width="350" Height="240" 
+                            Title="Мій улюблений предмет" RadioButtonChecked="Print"
+                            FontSize="20" TitleVisibility="Visible" Foreground="Black" Background="White">
             <c:RadioButtonGroup.RadioButtons>
-                <RadioButton Content="Button 1"/>
-                <RadioButton Content="Button 2"/>
-                <RadioButton Content="Button 3"/>
-                <RadioButton Content="Button 4"/>
-                <RadioButton Content="Button 5"/>
-                <RadioButton Content="Button 6"/>
-                <RadioButton Content="Button 7"/>
-                <RadioButton Content="Button 8"/>
+                <RadioButton Content="Програмування"/>
+                <RadioButton Content="Дискретна мат."/>
+                <RadioButton Content="Мат. статистика"/>
+                <RadioButton Content="Диф. рівняння"/>
+                <RadioButton Content="Прог. Інженерія"/>
+                <RadioButton Content="Психологія"/>
+                <RadioButton Content="Комп. мережі"/>
+                
+                <RadioButton Content="Бази даних"/>
             </c:RadioButtonGroup.RadioButtons>
         </c:RadioButtonGroup>
     </Grid>

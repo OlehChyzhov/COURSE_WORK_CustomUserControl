@@ -1,7 +1,6 @@
-﻿using CustomControlsLibrary.SmartTags.ActionLists;
-using System.ComponentModel.Design;
+﻿using System.ComponentModel.Design;
 using System.Windows.Forms.Design;
-namespace CustomControlsLibrary.SmartTags.Designers
+namespace CustomControlsLibrary
 {
     public class RadiobuttonGroupDesigner : ControlDesigner
     {

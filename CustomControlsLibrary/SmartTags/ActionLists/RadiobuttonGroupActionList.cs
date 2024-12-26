@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.Text;
 
-namespace CustomControlsLibrary.SmartTags.ActionLists
+namespace CustomControlsLibrary
 {
     public class RadiobuttonGroupActionList : DesignerActionList
     {
@@ -27,18 +26,18 @@ namespace CustomControlsLibrary.SmartTags.ActionLists
         public string Title
         {
             get => component.Title;
+            set => GetPropertyByName(nameof(Title)).SetValue(component, value);
         }
 
-        public override DesignerActionItemCollection GetSortedActionItems()
-        {
-            DesignerActionItemCollection items = new DesignerActionItemCollection()
-            {
-                new DesignerActionHeaderItem("Appearance"),
-                new DesignerActionHeaderItem("Information"),
-                new DesignerActionPropertyItem(nameof(Title), "Radiogroup Title", "Appearance", "Text at the top of the group"),
-            };
+        //public override DesignerActionItemCollection GetSortedActionItems()
+        //{
+        //    DesignerActionItemCollection items = new DesignerActionItemCollection()
+        //    {
+        //        new DesignerActionHeaderItem("Appearance"),
+        //        new DesignerActionPropertyItem(nameof(Title), "Radiogroup Title", "Appearance", "Text at the top of the group"),
+        //    };
 
-            return items;
-        }
+        //    return items;
+        //}
     }
 }
