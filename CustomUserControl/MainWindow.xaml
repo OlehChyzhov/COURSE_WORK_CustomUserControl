@@ -8,9 +8,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <c:RadioButtonGroup Columns="2" 
+        <c:RadioButtonGroup Columns="2" BorderThickness="2"
                             Title="Мій улюблений предмет" RadioButtonChecked="Print"
-                            FontSize="20" Foreground="Black" Background="White" Width="400" Height="200">
+                            FontSize="18" Width="400" Height="200"
+                            Foreground="DarkBlue" FontWeight="Bold" TitleHorizontalAlignment="Center">
+            <c:RadioButtonGroup.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FF356167" Offset="0.911"/>
+                    <GradientStop Color="#FF9CCBD1" Offset="0.21"/>
+                    <GradientStop Color="#FF476F75" Offset="0.643"/>
+                </LinearGradientBrush>
+            </c:RadioButtonGroup.Background>
             <c:RadioButtonGroup.RadioButtons>
                 <RadioButton Content="Програмування"/>
                 <RadioButton Content="Дискретна мат."/>
@@ -19,7 +28,6 @@
                 <RadioButton Content="Прог. Інженерія"/>
                 <RadioButton Content="Психологія"/>
                 <RadioButton Content="Комп. мережі"/>
-
                 <RadioButton Content="Бази даних"/>
             </c:RadioButtonGroup.RadioButtons>
         </c:RadioButtonGroup>

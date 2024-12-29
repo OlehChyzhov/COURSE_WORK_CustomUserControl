@@ -72,8 +72,6 @@
     <Compile Include="RadiobuttonGroup.xaml.cs">
       <DependentUpon>RadiobuttonGroup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SmartTags\ActionLists\RadiobuttonGroupActionList.cs" />
-    <Compile Include="SmartTags\Designers\RadiobuttonGroupDesigner.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
