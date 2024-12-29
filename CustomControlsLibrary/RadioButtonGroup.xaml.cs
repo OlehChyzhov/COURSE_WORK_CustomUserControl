@@ -2,15 +2,16 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace CustomControlsLibrary
 {
-    [ToolboxBitmap(typeof(RadioButtonGroup), "CustomControlsLibrary.RadioButtonGroup.bmp")]
-    [Designer(typeof(RadiobuttonGroupDesigner))]
+    [System.Drawing.ToolboxBitmap(typeof(RadioButtonGroup), "CustomControlsLibrary.RadioButtonGroup.bmp")]
     public partial class RadioButtonGroup : UserControl
     {
         public RadioButtonGroup()

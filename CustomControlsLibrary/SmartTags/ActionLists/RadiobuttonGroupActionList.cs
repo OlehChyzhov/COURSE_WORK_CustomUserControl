@@ -1,43 +1,56 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 
 namespace CustomControlsLibrary
 {
+    // DOES NOT WORK IN WPF
+
     public class RadiobuttonGroupActionList : DesignerActionList
     {
-        private RadioButtonGroup component;
-        private DesignerActionUIService designerActionUIService = null;
+        private RadioButtonGroup radiobuttonGroup;
+        private DesignerActionUIService designerActionSvc = null;
 
         public RadiobuttonGroupActionList(IComponent comp) : base(comp)
         {
-            component = comp as RadioButtonGroup;
-            designerActionUIService = GetService(typeof(DesignerActionUIService)) as DesignerActionUIService;
+            radiobuttonGroup = (RadioButtonGroup)comp;
+            designerActionSvc = (DesignerActionUIService)GetService(typeof(DesignerActionUIService));
         }
 
         private PropertyDescriptor GetPropertyByName(string propName)
         {
-            PropertyDescriptor prop;
-            prop = TypeDescriptor.GetProperties(component)[propName];
+            PropertyDescriptor prop = default(PropertyDescriptor);
+            prop = TypeDescriptor.GetProperties(radiobuttonGroup)[propName];
+            if (prop == null)
+            {
+                throw new ArgumentException("Invalid Property", propName);
+            }
+            else
+            {
+                return prop;
+            }
+        }
 
-            if (prop == null) throw new InvalidEnumArgumentException($"Property not found {propName}");
-            else return prop;
+        public override DesignerActionItemCollection GetSortedActionItems()
+        {
+            DesignerActionItemCollection items = new DesignerActionItemCollection()
+            {
+                new DesignerActionHeaderItem("Appearance"),
+                new DesignerActionPropertyItem(nameof(Title), "Title", "Appearance"),
+            };
+            return items;
         }
 
         public string Title
         {
-            get => component.Title;
-            set => GetPropertyByName(nameof(Title)).SetValue(component, value);
+            get 
+            {
+                return radiobuttonGroup.Title; 
+            }
+            set 
+            {
+                GetPropertyByName(nameof(Title)).SetValue(radiobuttonGroup, value);
+            }
         }
-
-        //public override DesignerActionItemCollection GetSortedActionItems()
-        //{
-        //    DesignerActionItemCollection items = new DesignerActionItemCollection()
-        //    {
-        //        new DesignerActionHeaderItem("Appearance"),
-        //        new DesignerActionPropertyItem(nameof(Title), "Radiogroup Title", "Appearance", "Text at the top of the group"),
-        //    };
-
-        //    return items;
-        //}
     }
 }

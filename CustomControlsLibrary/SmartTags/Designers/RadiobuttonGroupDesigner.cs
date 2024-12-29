@@ -2,20 +2,21 @@
 using System.Windows.Forms.Design;
 namespace CustomControlsLibrary
 {
+    // DOES NOT WORK IN WPF
     public class RadiobuttonGroupDesigner : ControlDesigner
     {
-        private DesignerActionListCollection actionList;
+        private DesignerActionListCollection actionLists = null;
 
         public override DesignerActionListCollection ActionLists
         {
             get
             {
-                if (actionList == null)
+                if (actionLists == null)
                 {
-                    actionList = new DesignerActionListCollection();
-                    actionList.Add(new RadiobuttonGroupActionList(this.Component));
+                    actionLists = new DesignerActionListCollection();
+                    actionLists.Add(new RadiobuttonGroupActionList(this.Component));
                 }
-                return actionList;
+                return actionLists;
             }
         }
     }
