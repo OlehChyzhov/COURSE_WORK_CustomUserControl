@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomControlsLibrary.Adorners;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Web.UI.Design;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace CustomControlsLibrary
@@ -155,5 +157,11 @@ namespace CustomControlsLibrary
             }
         }
         #endregion
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            AdornerLayer layer = AdornerLayer.GetAdornerLayer(this);
+            layer.Add(new RunTimeSmartTagAdorner(this));
+        }
     }
 }
