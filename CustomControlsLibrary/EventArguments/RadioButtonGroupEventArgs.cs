@@ -7,4 +7,9 @@ namespace CustomControlsLibrary
     {
         public RadioButton Button { get; set; }
     }
+
+    public class CheckboxGroupEventArgs : EventArgs
+    {
+        public CheckBox CheckBox { get; set; }
+    }
 }

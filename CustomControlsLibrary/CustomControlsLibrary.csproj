@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SmartTagAssembly">
-      <HintPath>..\SmartTagAssembly\bin\Debug\SmartTagAssembly.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Data" />
@@ -54,6 +51,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckBoxGroup.xaml.cs">
+      <DependentUpon>CheckBoxGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ColumnToHorizontalAlignmentConverter.cs" />
     <Compile Include="EventArguments\RadioButtonGroupEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -82,6 +82,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="CheckBoxGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RadiobuttonGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -90,6 +94,8 @@
   <ItemGroup>
     <EmbeddedResource Include="RadioButtonGroup.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="CheckBoxGroup.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

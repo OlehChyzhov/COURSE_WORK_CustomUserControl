@@ -7,7 +7,7 @@
         xmlns:c="clr-namespace:CustomControlsLibrary;assembly=CustomControlsLibrary"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <UniformGrid>
         <c:RadioButtonGroup Columns="2" BorderThickness="2"
                             Title="Мій улюблений предмет" RadioButtonChecked="Print"
                             FontSize="18" Width="400" Height="200"
@@ -31,5 +31,36 @@
                 <RadioButton Content="Бази даних"/>
             </c:RadioButtonGroup.RadioButtons>
         </c:RadioButtonGroup>
-    </Grid>
+        <c:RadioButtonGroup Columns="2" BorderThickness="2"
+                            Title="Мій улюблений предмет" RadioButtonChecked="Print"
+                            FontSize="18" Width="400" Height="200"
+                            Foreground="DarkBlue" FontWeight="Bold" TitleHorizontalAlignment="Center">
+            <c:RadioButtonGroup.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE84646" Offset="1"/>
+                    <GradientStop Color="#FFD77F39" Offset="0.911"/>
+                    <GradientStop Color="#FF88D975" Offset="0.21"/>
+                    <GradientStop Color="#FFBBB22C" Offset="0.653"/>
+                </LinearGradientBrush>
+            </c:RadioButtonGroup.Background>
+            <c:RadioButtonGroup.RadioButtons>
+                <RadioButton Content="Програмування"/>
+                <RadioButton Content="Дискретна мат."/>
+                <RadioButton Content="Мат. статистика"/>
+                <RadioButton Content="Диф. рівняння"/>
+                <RadioButton Content="Прог. Інженерія"/>
+                <RadioButton Content="Психологія"/>
+                <RadioButton Content="Комп. мережі"/>
+                <RadioButton Content="Бази даних"/>
+            </c:RadioButtonGroup.RadioButtons>
+        </c:RadioButtonGroup>
+
+        <c:CheckBoxGroup CheckBoxSelected="CheckBoxPrint" CheckBoxUnselected="UncheckBoxPrint">
+            <c:CheckBoxGroup.CheckBoxes>
+                <CheckBox Content="Box 1"/>
+                <CheckBox Content="Box 2"/>
+                <CheckBox Content="Box 3"/>
+            </c:CheckBoxGroup.CheckBoxes>
+        </c:CheckBoxGroup>
+    </UniformGrid>
 </Window>

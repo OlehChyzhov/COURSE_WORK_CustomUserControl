@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Web.UI.Design;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace CustomControlsLibrary
 {
     [System.Drawing.ToolboxBitmap(typeof(RadioButtonGroup), "CustomControlsLibrary.RadioButtonGroup.bmp")]
     public partial class RadioButtonGroup : UserControl
     {
+        private Guid _groupId;
         public RadioButtonGroup()
         {
             InitializeComponent();
+            _groupId = Guid.NewGuid();
             this.DataContext = this;
             RadioButtons.CollectionChanged += SubscribeAllButtons;
         }
@@ -27,19 +27,19 @@ namespace CustomControlsLibrary
         #endregion
 
         #region Dependency Properties
-        public static DependencyProperty ColumnsProperty = DependencyProperty.RegisterAttached(nameof(Columns), typeof(int),
+        public static DependencyProperty ColumnsProperty = DependencyProperty.Register(nameof(Columns), typeof(int),
             typeof(RadioButtonGroup), new PropertyMetadata(1));
 
-        public static DependencyProperty TitleProperty = DependencyProperty.RegisterAttached(nameof(Title), typeof(string),
+        public static DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(string),
             typeof(RadioButtonGroup), new PropertyMetadata("RadioButton Group"));
 
-        public static DependencyProperty TitleVisibilityProperty = DependencyProperty.RegisterAttached(nameof(TitleVisibility), typeof(Visibility),
+        public static DependencyProperty TitleVisibilityProperty = DependencyProperty.Register(nameof(TitleVisibility), typeof(Visibility),
             typeof(RadioButtonGroup), new PropertyMetadata(Visibility.Visible));
 
-        public static DependencyProperty TitleHorizontalAlignmentProperty = DependencyProperty.RegisterAttached(nameof(TitleHorizontalAlignment), typeof(HorizontalAlignment),
+        public static DependencyProperty TitleHorizontalAlignmentProperty = DependencyProperty.Register(nameof(TitleHorizontalAlignment), typeof(HorizontalAlignment),
             typeof(RadioButtonGroup), new PropertyMetadata(HorizontalAlignment.Left));        
         
-        public static DependencyProperty TitleFontWeightProperty = DependencyProperty.RegisterAttached(nameof(TitleFontWeight), typeof(FontWeight),
+        public static DependencyProperty TitleFontWeightProperty = DependencyProperty.Register(nameof(TitleFontWeight), typeof(FontWeight),
             typeof(RadioButtonGroup), new PropertyMetadata(FontWeights.Normal));
         #endregion
 
@@ -105,7 +105,7 @@ namespace CustomControlsLibrary
         {
             foreach (RadioButton button in RadioButtons)
             {
-                button.GroupName = Title;
+                UpdateGroupName(button);
                 UnsubscribeTo(button);
                 SubscribeTo(button);
             }
@@ -117,7 +117,7 @@ namespace CustomControlsLibrary
             RadioButton button = (RadioButton)sender;
             selectedRadiobutton = button;
 
-            RadioButtonChecked.Invoke(this, new RadioButtonGroupEventArgs() { Button = button });
+            RadioButtonChecked?.Invoke(this, new RadioButtonGroupEventArgs() { Button = button });
         }
         #endregion
 
@@ -132,6 +132,11 @@ namespace CustomControlsLibrary
         {
             radioButton.Checked -= RadioButtonCheckedResponce;
         }
+
+        private void UpdateGroupName(RadioButton btn)
+        {
+            btn.GroupName = $"{_groupId}";
+        }
         #endregion
 
         #region Public Methods
@@ -140,7 +145,7 @@ namespace CustomControlsLibrary
         public void Add(RadioButton button)
         {
             SubscribeTo(button);
-            button.GroupName = Title;
+            UpdateGroupName(button);
             RadioButtons.Add(button);
         }
 
