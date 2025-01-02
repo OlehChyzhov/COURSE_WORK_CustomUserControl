@@ -18,6 +18,17 @@ namespace CustomControlsLibrary
             CheckBoxes.CollectionChanged += SubscribeAllCheckboxes;
         }
 
+        // Не впевнений, чи деструктор потрібен, але оскільки збирач сміття не може позбутись підписаних методів,
+        // то вирішив написати.
+        ~CheckBoxGroup()
+        {
+            foreach (CheckBox checkBox in CheckBoxes)
+            {
+                UnsubscribeTo(checkBox);
+            }
+            CheckBoxes.CollectionChanged -= SubscribeAllCheckboxes;
+        }
+
         #region Events
         [Category("Custom Events")]
         [Description("Executes when the checkbox is selected.")]
@@ -100,14 +111,22 @@ namespace CustomControlsLibrary
 
         #region Important Methods
         // Коли користувач додає нову кнопку, то цей метод перезаписує метод Click усіх кнопок.
-
-        /// ПРОБЛЕМА: Якщо кристувач прибере кнопку, то її не вийде відписати.
         private void SubscribeAllCheckboxes(object sender, NotifyCollectionChangedEventArgs e)
         {
-            foreach (CheckBox checkbox in CheckBoxes)
+            if (e.OldItems != null)
             {
-                UnsubscribeTo(checkbox);
-                SubscribeTo(checkbox);
+                foreach (CheckBox checkBox in e.OldItems)
+                {
+                    UnsubscribeTo(checkBox);
+                }
+            }
+
+            if (e.NewItems != null)
+            {
+                foreach (CheckBox checkBox in e.NewItems)
+                {
+                    SubscribeTo(checkBox);
+                }
             }
         }
 

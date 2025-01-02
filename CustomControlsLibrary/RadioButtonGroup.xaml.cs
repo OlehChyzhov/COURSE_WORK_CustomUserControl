@@ -1,10 +1,12 @@
-﻿using System;
+﻿using CustomControlsLibrary.RunTimeAdorners;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace CustomControlsLibrary
 {
@@ -18,6 +20,16 @@ namespace CustomControlsLibrary
             _groupId = Guid.NewGuid();
             this.DataContext = this;
             RadioButtons.CollectionChanged += SubscribeAllButtons;
+        }
+        // Не впевнений, чи деструктор потрібен, але оскільки збирач сміття не може позбутись підписаних методів,
+        // то вирішив написати.
+        ~RadioButtonGroup()
+        {
+            foreach (RadioButton button in RadioButtons)
+            {
+                UnsubscribeTo(button);
+            }
+            RadioButtons.CollectionChanged -= SubscribeAllButtons;
         }
 
         #region Events
@@ -103,11 +115,21 @@ namespace CustomControlsLibrary
         // Коли користувач додає нову кнопку, то цей метод перезаписує метод Click усіх кнопок.
         private void SubscribeAllButtons(object sender, NotifyCollectionChangedEventArgs e)
         {
-            foreach (RadioButton button in RadioButtons)
+            if (e.OldItems != null)
             {
-                UpdateGroupName(button);
-                UnsubscribeTo(button);
-                SubscribeTo(button);
+                foreach (RadioButton button in e.OldItems)
+                {
+                    UnsubscribeTo(button);
+                }
+            }
+
+            if (e.NewItems != null)
+            {
+                foreach (RadioButton button in e.NewItems)
+                {
+                    UpdateGroupName(button);
+                    SubscribeTo(button);
+                }
             }
         }
 
@@ -160,5 +182,11 @@ namespace CustomControlsLibrary
             }
         }
         #endregion
+
+        private void AttachAdorners(object sender, RoutedEventArgs e)
+        {
+            AdornerLayer layer = AdornerLayer.GetAdornerLayer(this);
+            layer.Add(new HoverButtonsAdorner(this));
+        }
     }
 }
