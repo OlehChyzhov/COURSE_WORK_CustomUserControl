@@ -15,7 +15,7 @@ namespace CustomControlsLibrary.RunTimeAdorners
             Group = comp as RadioButtonGroup;
             Group.MouseEnter += MouseEnterGroup;
         }
-        // Не впевнений, чи деструктор потрібен, але оскільки збирач сміття не може позбутись підписаних методів,
+        // Не впевнений, чи деструктор потрібен, але оскільки збирач сміття не може позбутись методів, які підписані на події,
         // то вирішив написати.
         ~HoverButtonsAdorner()
         {

@@ -21,7 +21,7 @@ namespace CustomControlsLibrary
             this.DataContext = this;
             RadioButtons.CollectionChanged += SubscribeAllButtons;
         }
-        // Не впевнений, чи деструктор потрібен, але оскільки збирач сміття не може позбутись підписаних методів,
+        // Не впевнений, чи деструктор потрібен, але оскільки збирач сміття не може позбутись методів, які підписані на події,
         // то вирішив написати.
         ~RadioButtonGroup()
         {
