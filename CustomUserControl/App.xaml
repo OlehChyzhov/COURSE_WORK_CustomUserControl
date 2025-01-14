@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:CustomUserControl"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ImageBrush x:Key="NotCompleted" ImageSource="Images/No.png"/>
+        <ImageBrush x:Key="Completed" ImageSource="Images/Yes.png"/>
+
+        <Style TargetType="TextBlock" x:Key="NiceTextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Panel.ZIndex" Value="1"/>
+        </Style>
     </Application.Resources>
 </Application>

@@ -1,0 +1,132 @@
+﻿<Page x:Class="CustomUserControl.Pages.StagedProgressBarTemplates"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CustomUserControl.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StagedProgressBarTemplates">
+
+    <Page.Resources>
+        <ControlTemplate x:Key="ProgressBarTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Ellipse Grid.Column="0"
+                 Width="100" Height="100" 
+                 Fill="{StaticResource Completed}" 
+                 Stroke="Black"
+                 Panel.ZIndex="1"
+                 x:Name="Stage1"/>
+
+                <Ellipse Grid.Column="1"
+                 Width="100" Height="100" 
+                 Fill="{StaticResource NotCompleted}" 
+                 Stroke="Black"
+                 Panel.ZIndex="1"
+                 x:Name="Stage2"/>
+
+                <Ellipse Grid.Column="2"
+                 Width="100" Height="100" 
+                 Fill="{StaticResource NotCompleted}" 
+                 Stroke="Black"
+                 Panel.ZIndex="1"
+                 x:Name="Stage3"/>
+
+                <Ellipse Grid.Column="3"
+                 Width="100" Height="100" 
+                 Fill="{StaticResource NotCompleted}" 
+                 Stroke="Black"
+                 Panel.ZIndex="1"
+                 x:Name="Stage4"/>
+
+                <Ellipse Grid.Column="4"
+                 Width="100" Height="100" 
+                 Fill="{StaticResource NotCompleted}" 
+                 Stroke="Black"
+                 Panel.ZIndex="1"
+                 x:Name="Stage5"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                   Text="Doing homework"
+                   Style="{StaticResource NiceTextBlock}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                   Text="Shaving neighbor's cat"
+                   Style="{StaticResource NiceTextBlock}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="2"
+                   Text="Petting dogs"
+                   Style="{StaticResource NiceTextBlock}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="3"
+                   Text="Fighting wild boar"
+                   Style="{StaticResource NiceTextBlock}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="4"
+                   Text="Helping mom"
+                   Style="{StaticResource NiceTextBlock}"/>
+
+                <Rectangle Height="1" Grid.Column="0"
+                   Grid.ColumnSpan="9" Fill="Black"
+                   Panel.ZIndex="0"/>
+            </Grid>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="local:Helper.Stage" Value="Stage1">
+                    <Setter TargetName="Stage1" Property="Fill" Value="{StaticResource Completed}" />
+                </Trigger>
+                <Trigger Property="local:Helper.Stage" Value="Stage2">
+                    <Setter TargetName="Stage1" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage2" Property="Fill" Value="{StaticResource Completed}" />
+                </Trigger>
+                <Trigger Property="local:Helper.Stage" Value="Stage3">
+                    <Setter TargetName="Stage1" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage2" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage3" Property="Fill" Value="{StaticResource Completed}" />
+                </Trigger>
+                <Trigger Property="local:Helper.Stage" Value="Stage4">
+                    <Setter TargetName="Stage1" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage2" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage3" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage4" Property="Fill" Value="{StaticResource Completed}" />
+                </Trigger>
+                <Trigger Property="local:Helper.Stage" Value="Stage5">
+                    <Setter TargetName="Stage1" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage2" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage3" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage4" Property="Fill" Value="{StaticResource Completed}" />
+                    <Setter TargetName="Stage5" Property="Fill" Value="{StaticResource Completed}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Slider Grid.Row="1" Margin="50"
+                Minimum="0" Maximum="100" 
+                ValueChanged="MainSlider_ValueChanged"/>
+
+        <ProgressBar x:Name="StagedProgressBar" 
+                     Template="{StaticResource ProgressBarTemplate}"/>
+
+
+    </Grid>
+</Page>

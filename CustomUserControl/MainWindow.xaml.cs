@@ -1,4 +1,5 @@
 ﻿using CustomControlsLibrary;
+using CustomUserControl.Pages;
 using System.Windows;
 
 namespace CustomUserControl
@@ -13,22 +14,21 @@ namespace CustomUserControl
             InitializeComponent();
         }
 
-        private void Print(object sender, RadioButtonGroupEventArgs e)
+        private void RadioButtonGroup(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Selected button: '{e.Button.Content}'. Collection: '{((RadioButtonGroup)sender).Title}'. " +
-                $"Index of the selected button {((RadioButtonGroup)sender).SelectedRadiobuttonIndex}");
+            MainFrame.Navigate(new RadioButtonGroupPage());
         }
-
-        private void CheckBoxPrint(object sender, CheckboxGroupEventArgs e)
+        private void CheckBoxGroup(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Selected box: '{e.CheckBox.Content}'. Collection: '{((CheckBoxGroup)sender).Title}'. " +
-                $"Index of the selected box {((CheckBoxGroup)sender).SelectedCheckboxIndex}");
+            MainFrame.Navigate(new CheckBoxGroupPage());
         }
-
-        private void UncheckBoxPrint(object sender, CheckboxGroupEventArgs e)
+        private void StagedProgressBar(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Unselected box: '{e.CheckBox.Content}'. Collection: '{((CheckBoxGroup)sender).Title}'. " +
-                $"Index of the unselected box {((CheckBoxGroup)sender).SelectedCheckboxIndex}");
+            MainFrame.Navigate(new StagedProgressBar());
+        }
+        private void StagedProgressBarTemplates(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new StagedProgressBarTemplates());
         }
     }
 }
