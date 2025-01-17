@@ -1,16 +1,16 @@
-﻿using System;
+﻿using CustomUserControl.Chapter1.Components;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CustomUserControl.Pages
+namespace CustomUserControl.Chapter1.Pages
 {
-    public partial class StagedProgressBarTemplates : Page
+    public partial class StagedPBTemplatePage : Page
     {
-        public StagedProgressBarTemplates()
+        public StagedPBTemplatePage()
         {
             InitializeComponent();
         }
-
         private void MainSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             int Val = (int)Math.Ceiling(e.NewValue);

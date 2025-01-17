@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace CustomUserControl.Pages
+namespace CustomUserControl.Chapter1.Components
 {
     public static class Helper
     {

@@ -13,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CustomUserControl.Pages
+namespace CustomUserControl.Chapter4
 {
     /// <summary>
-    /// Interaction logic for StagedProgressBar.xaml
+    /// Interaction logic for RadioButtonGroupPageChapter4.xaml
     /// </summary>
-    public partial class StagedProgressBar : Page
+    public partial class RadioButtonGroupPageChapter4 : Page
     {
-        public StagedProgressBar()
+        public RadioButtonGroupPageChapter4()
         {
             InitializeComponent();
-        }
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            StagedPBar.Progress = e.NewValue;
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CustomUserControl.Pages
+namespace CustomUserControl.Final
 {
     public partial class RadioButtonGroupPage : Page
     {

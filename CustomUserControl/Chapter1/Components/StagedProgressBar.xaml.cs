@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace HelperLibrary
+namespace CustomUserControl.Chapter1.Components
 {
     public partial class StagedProgressBar : UserControl
     {
@@ -10,7 +10,6 @@ namespace HelperLibrary
         {
             InitializeComponent();
         }
-
         public static DependencyProperty ProgressProperty = DependencyProperty.Register(nameof(Progress), typeof(double),
             typeof(StagedProgressBar), new PropertyMetadata(0.0, ProgressChanged));
 
@@ -41,7 +40,7 @@ namespace HelperLibrary
                 bar.Stage3Rect.Fill = NotCompleted;
                 bar.Stage4Rect.Fill = NotCompleted;
                 bar.Stage5Rect.Fill = NotCompleted;
-            }            
+            }
             else if (bar.Progress > 40 && bar.Progress <= 60)
             {
                 bar.Stage1Rect.Fill = Completed;

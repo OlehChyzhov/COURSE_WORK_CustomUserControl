@@ -12,14 +12,20 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Width="200">
-            <Button Content="RadioButtonGroup" FontSize="20" Click="RadioButtonGroup"/>
-            <Button Content="CheckBoxGroup" FontSize="20" Click="CheckBoxGroup"/>
-            <Button Content="StagedProgressBar" FontSize="20" Click="StagedProgressBar"/>
-            <Button Content="StagedProgressBarTemplates" FontSize="16" Click="StagedProgressBarTemplates"/>
-        </StackPanel>
 
+        <ScrollViewer>
+            <StackPanel Width="200">
+                <Button Content="Staged PB" FontSize="16" Padding="5" Click="StagedPB"/>
+                <Button Content="Staged PB Template" FontSize="16" Padding="5" Click="StagedPBTemplate"/>
+                <Button Content="Dependency Property" FontSize="16" Padding="5" Click="DependencyPropPage"/>
+                <Button Content="Attached Property" FontSize="16" Padding="5" Click="AttachedPropPage"/>
+                <Button Content="C4. Design" FontSize="16" Padding="5" Click="Chapter4Design"/>
+                <Button Content="C5. Functionality" FontSize="16" Padding="5" Click="Chapter5Functionality"/>
+                
+                <Button Content="RadioButtonGroup Final" FontSize="16" Padding="5" Click="RadioButtonGroup"/>
+                <Button Content="CheckBoxGroup Final" FontSize="16" Padding="5" Click="CheckBoxGroup"/>
+            </StackPanel>
+        </ScrollViewer>
         <Frame Grid.Column="1" x:Name="MainFrame"/>
     </Grid>
 </Window>
