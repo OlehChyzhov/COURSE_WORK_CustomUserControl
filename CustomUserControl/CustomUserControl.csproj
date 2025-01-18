@@ -95,6 +95,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Chapter6\Adorners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chapter6\RBtnGroupChapter6.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -130,11 +138,19 @@
     <Compile Include="Chapter4\RBtnGroupChapter4.xaml.cs">
       <DependentUpon>RBtnGroupChapter4.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Chapter5\RadioButtonGroupEventArgs.cs" />
     <Compile Include="Chapter5\RadioButtonGroupPageChapter5.xaml.cs">
       <DependentUpon>RadioButtonGroupPageChapter5.xaml</DependentUpon>
     </Compile>
     <Compile Include="Chapter5\RBtnGroupChapter5.xaml.cs">
       <DependentUpon>RBtnGroupChapter5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chapter6\AdditionalInformationAdorner.cs" />
+    <Compile Include="Chapter6\Adorners.xaml.cs">
+      <DependentUpon>Adorners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chapter6\RBtnGroupChapter6.xaml.cs">
+      <DependentUpon>RBtnGroupChapter6.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

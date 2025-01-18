@@ -1,57 +1,55 @@
-﻿using System;
+﻿using CustomUserControl.Chapter5;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
 
-namespace CustomControlsLibrary
+namespace CustomUserControl.Chapter6
 {
-    [System.Drawing.ToolboxBitmap(typeof(RadioButtonGroup), "CustomControlsLibrary.RadioButtonGroup.bmp")]
-    public partial class RadioButtonGroup : UserControl
+    public partial class RBtnGroupChapter6 : UserControl
     {
         private Guid _groupId;
-        public RadioButtonGroup()
+        public RBtnGroupChapter6()
         {
             InitializeComponent();
+            DataContext = this;
             _groupId = Guid.NewGuid();
-            this.DataContext = this;
-            RadioButtons.CollectionChanged += SubscribeAllButtons;
+            RadioButtons.CollectionChanged += RadioButtonsChanged;
         }
-        ~RadioButtonGroup()
-        {
-            foreach (RadioButton button in RadioButtons)
-            {
-                UnsubscribeTo(button);
-            }
-            RadioButtons.CollectionChanged -= SubscribeAllButtons;
-        }
-
-        #region Events
         [Category("Custom Events")]
         [Description("Executes when the radiobutton is selected.")]
-        public event EventHandler<RadioButtonGroupEventArgs> RadioButtonChecked;
-        #endregion
+        public event EventHandler<RadioButtonGroupEventArgs> RadioButtonSelected;
 
         #region Dependency Properties
         public static DependencyProperty ColumnsProperty = DependencyProperty.Register(nameof(Columns), typeof(int),
-            typeof(RadioButtonGroup), new PropertyMetadata(1));
+            typeof(RBtnGroupChapter6), new PropertyMetadata(1));
 
         public static DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(string),
-            typeof(RadioButtonGroup), new PropertyMetadata("RadioButton Group"));
+            typeof(RBtnGroupChapter6), new PropertyMetadata("RadioButton Group"));
 
         public static DependencyProperty TitleVisibilityProperty = DependencyProperty.Register(nameof(TitleVisibility), typeof(Visibility),
-            typeof(RadioButtonGroup), new PropertyMetadata(Visibility.Visible));
+            typeof(RBtnGroupChapter6), new PropertyMetadata(Visibility.Visible));
 
         public static DependencyProperty TitleHorizontalAlignmentProperty = DependencyProperty.Register(nameof(TitleHorizontalAlignment), typeof(HorizontalAlignment),
-            typeof(RadioButtonGroup), new PropertyMetadata(HorizontalAlignment.Left));        
-        
+            typeof(RBtnGroupChapter6), new PropertyMetadata(HorizontalAlignment.Left));
+
         public static DependencyProperty TitleFontWeightProperty = DependencyProperty.Register(nameof(TitleFontWeight), typeof(FontWeight),
-            typeof(RadioButtonGroup), new PropertyMetadata(FontWeights.Normal));
+            typeof(RBtnGroupChapter6), new PropertyMetadata(FontWeights.Normal));
         #endregion
 
-        #region Often Used Properties
+        #region Properties
+        [Category("Custom Properties")]
+        [Description("Collection of radio buttons.")]
+        public ObservableCollection<RadioButton> RadioButtons { get; } = new ObservableCollection<RadioButton>();
+        public Dictionary<string, string> AdditionalInformation { get; } = new Dictionary<string, string>();
+
         [Category("The Most Popular")]
         [Description("Number of columns for all radiobuttons.")]
         public int Columns
@@ -59,7 +57,6 @@ namespace CustomControlsLibrary
             get => (int)GetValue(ColumnsProperty);
             set => SetValue(ColumnsProperty, value);
         }
-
         [Category("The Most Popular")]
         [Description("Text displayed at the top of radiobutton group.")]
         public string Title
@@ -67,7 +64,13 @@ namespace CustomControlsLibrary
             get => (string)GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
         }
-
+        [Category("The Most Popular")]
+        [Description("Visibility of the title.")]
+        public Visibility TitleVisibility
+        {
+            get => (Visibility)GetValue(TitleVisibilityProperty);
+            set => SetValue(TitleVisibilityProperty, value);
+        }
         [Category("The Most Popular")]
         [Description("Alignment of the title.")]
         public HorizontalAlignment TitleHorizontalAlignment
@@ -82,33 +85,10 @@ namespace CustomControlsLibrary
             get => (FontWeight)GetValue(TitleFontWeightProperty);
             set => SetValue(TitleFontWeightProperty, value);
         }
-
-        [Category("The Most Popular")]
-        [Description("Visibility of the title.")]
-        public Visibility TitleVisibility
-        {
-            get => (Visibility)GetValue(TitleVisibilityProperty);
-            set => SetValue(TitleVisibilityProperty, value);
-        }
         #endregion
 
-        #region Custom Properties
-        private RadioButton selectedRadiobutton;
-
-        [Category("Custom Properties")]
-        [Description("Index of the selected radiobutton.")]
-        public int SelectedRadiobuttonIndex
-        {
-            get => RadioButtons.IndexOf(selectedRadiobutton);
-        }
-
-        [Category("Custom Properties")]
-        [Description("Collection of radio buttons.")]
-        public ObservableCollection<RadioButton> RadioButtons { get; } = new ObservableCollection<RadioButton>();
-        #endregion
-
-        #region Important Methods
-        private void SubscribeAllButtons(object sender, NotifyCollectionChangedEventArgs e)
+        #region Callbacks
+        private void RadioButtonsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.OldItems != null)
             {
@@ -127,25 +107,27 @@ namespace CustomControlsLibrary
                 }
             }
         }
+
         private void RadioButtonCheckedResponce(object sender, EventArgs e)
         {
             RadioButton button = (RadioButton)sender;
-            selectedRadiobutton = button;
-
-            RadioButtonChecked?.Invoke(this, new RadioButtonGroupEventArgs() { Button = button });
+            RadioButtonSelected?.Invoke(this, new RadioButtonGroupEventArgs() { Button = button });
         }
         #endregion
 
         #region Private Methods
-
         private void SubscribeTo(RadioButton radioButton)
         {
             radioButton.Checked += RadioButtonCheckedResponce;
+            radioButton.MouseEnter += RadioButton_MouseEnter;
+            radioButton.MouseLeave += RadioButton_MouseLeave;
         }
 
         private void UnsubscribeTo(RadioButton radioButton)
         {
             radioButton.Checked -= RadioButtonCheckedResponce;
+            radioButton.MouseEnter -= RadioButton_MouseEnter;
+            radioButton.MouseLeave -= RadioButton_MouseLeave;
         }
 
         private void UpdateGroupName(RadioButton btn)
@@ -175,5 +157,27 @@ namespace CustomControlsLibrary
             }
         }
         #endregion
+
+        private void RadioButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            string key = ((RadioButton)sender).Content.ToString();
+            if (AdditionalInformation.ContainsKey(key) == false) return;
+
+            AdornerLayer layer = AdornerLayer.GetAdornerLayer(this);
+            layer.Add(new AdditionalInformationAdorner(this, AdditionalInformation[key]));
+        }
+        private void RadioButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            AdornerLayer layer = AdornerLayer.GetAdornerLayer(this);
+
+            if (layer.GetAdorners(this) != null)
+            {
+                List<Adorner> adorners = layer.GetAdorners(this).ToList();
+                foreach (Adorner adorner in adorners)
+                {
+                    layer.Remove(adorner);
+                }
+            }
+        }
     }
 }

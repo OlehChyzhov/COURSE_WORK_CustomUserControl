@@ -3,6 +3,7 @@ using CustomUserControl.Chapter1.Pages;
 using CustomUserControl.Chapter3.Pages;
 using CustomUserControl.Chapter4;
 using CustomUserControl.Chapter5;
+using CustomUserControl.Chapter6;
 using CustomUserControl.Final;
 
 namespace CustomUserControl
@@ -41,10 +42,13 @@ namespace CustomUserControl
         {
             MainFrame.Navigate(new RadioButtonGroupPageChapter4());
         }
-
         private void Chapter5Functionality(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new RadioButtonGroupPageChapter5());
+        }
+        private void Chapter6Adorners(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Adorners());
         }
     }
 }

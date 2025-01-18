@@ -15,15 +15,16 @@
 
         <ScrollViewer>
             <StackPanel Width="200">
-                <Button Content="Staged PB" FontSize="16" Padding="5" Click="StagedPB"/>
-                <Button Content="Staged PB Template" FontSize="16" Padding="5" Click="StagedPBTemplate"/>
-                <Button Content="Dependency Property" FontSize="16" Padding="5" Click="DependencyPropPage"/>
-                <Button Content="Attached Property" FontSize="16" Padding="5" Click="AttachedPropPage"/>
+                <Button Content="C1. Staged PB" FontSize="16" Padding="5" Click="StagedPB"/>
+                <Button Content="C1. Staged PB Template" FontSize="16" Padding="5" Click="StagedPBTemplate"/>
+                <Button Content="C2. Dependency Property" FontSize="16" Padding="5" Click="DependencyPropPage"/>
+                <Button Content="C3. Attached Property" FontSize="16" Padding="5" Click="AttachedPropPage"/>
                 <Button Content="C4. Design" FontSize="16" Padding="5" Click="Chapter4Design"/>
                 <Button Content="C5. Functionality" FontSize="16" Padding="5" Click="Chapter5Functionality"/>
+                <Button Content="C6. Adorners" FontSize="16" Padding="5" Click="Chapter6Adorners"/>
                 
-                <Button Content="RadioButtonGroup Final" FontSize="16" Padding="5" Click="RadioButtonGroup"/>
-                <Button Content="CheckBoxGroup Final" FontSize="16" Padding="5" Click="CheckBoxGroup"/>
+                <Button Content="Final. RadioButtonGroup" FontSize="16" Padding="5" Click="RadioButtonGroup"/>
+                <Button Content="Final. CheckBoxGroup" FontSize="16" Padding="5" Click="CheckBoxGroup"/>
             </StackPanel>
         </ScrollViewer>
         <Frame Grid.Column="1" x:Name="MainFrame"/>

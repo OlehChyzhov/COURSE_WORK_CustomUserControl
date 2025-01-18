@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using CustomControlsLibrary;
 
 namespace CustomUserControl.Chapter5
 {
@@ -7,6 +9,11 @@ namespace CustomUserControl.Chapter5
         public RadioButtonGroupPageChapter5()
         {
             InitializeComponent();
+        }
+
+        private void Print(object sender, RadioButtonGroupEventArgs e)
+        {
+            MessageBox.Show($"Вибрано '{e.Button.Content}' у групі '{((RBtnGroupChapter5)sender).Title}'");
         }
     }
 }

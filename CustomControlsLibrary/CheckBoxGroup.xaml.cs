@@ -17,9 +17,6 @@ namespace CustomControlsLibrary
             this.DataContext = this;
             CheckBoxes.CollectionChanged += SubscribeAllCheckboxes;
         }
-
-        // Не впевнений, чи деструктор потрібен, але оскільки збирач сміття не може позбутись методів, які підписані на події,
-        // то вирішив написати.
         ~CheckBoxGroup()
         {
             foreach (CheckBox checkBox in CheckBoxes)
@@ -110,7 +107,6 @@ namespace CustomControlsLibrary
         #endregion
 
         #region Important Methods
-        // Коли користувач додає нову кнопку, то цей метод перезаписує метод Click усіх кнопок.
         private void SubscribeAllCheckboxes(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.OldItems != null)
@@ -129,8 +125,6 @@ namespace CustomControlsLibrary
                 }
             }
         }
-
-        // Викликає подію. Передає групу, яка викликала подію, і кнопку, яка була вибрана користувачем.
         private void CheckBoxSelectedResponce(object sender, EventArgs e)
         {
             CheckBox checkbox = (CheckBox)sender;
@@ -138,7 +132,6 @@ namespace CustomControlsLibrary
 
             CheckBoxSelected?.Invoke(this, new CheckboxGroupEventArgs() { CheckBox = checkbox });
         }
-
         private void CheckBoxUnselectedResponce(object sender, EventArgs e)
         {
             CheckBox checkbox = (CheckBox)sender;
@@ -149,13 +142,11 @@ namespace CustomControlsLibrary
         #endregion
 
         #region Private Methods
-
         private void SubscribeTo(CheckBox checkbox)
         {
             checkbox.Checked += CheckBoxSelectedResponce;
             checkbox.Unchecked += CheckBoxUnselectedResponce;
         }
-
         private void UnsubscribeTo(CheckBox checkbox)
         {
             checkbox.Checked -= CheckBoxSelectedResponce;

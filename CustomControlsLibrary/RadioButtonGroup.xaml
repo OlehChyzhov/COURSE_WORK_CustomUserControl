@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:CustomControlsLibrary"
              xmlns:converters="clr-namespace:CustomControlsLibrary.Converters"
              mc:Ignorable="d" 
-             Height="200" Width="200"
-             Loaded="AttachAdorners">
+             Height="200" Width="200">
 
     <UserControl.Resources>
         <converters:ColumnToHorizontalAlignmentConverter x:Key="ColumnToAlignmentConverter"/>
