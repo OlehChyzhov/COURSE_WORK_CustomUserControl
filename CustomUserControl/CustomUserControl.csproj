@@ -219,9 +219,9 @@
     <Resource Include="Images\No.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomControlsLibrary\CustomControlsLibrary.csproj">
-      <Project>{e45d4d0c-1be6-45e2-bb53-c5e44f89f787}</Project>
-      <Name>CustomControlsLibrary</Name>
+    <ProjectReference Include="..\CheckBoxGroupLibrary\CheckBoxGroupLibrary.csproj">
+      <Project>{c8379ed3-c7fc-4bfc-9d26-429afdca7adb}</Project>
+      <Name>CheckBoxGroupLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\RadioButtonGroupLibary\RadioButtonGroupLibary.csproj">
       <Project>{dc22213e-64a6-4582-8292-50dd389b7724}</Project>
