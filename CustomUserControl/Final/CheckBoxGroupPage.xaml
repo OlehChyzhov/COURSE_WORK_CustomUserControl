@@ -4,62 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CustomUserControl.Final"
-      xmlns:c="clr-namespace:CustomControlsLibrary;assembly=CustomControlsLibrary"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CheckBoxGroupPage">
 
     <UniformGrid>
-        <c:CheckBoxGroup CheckBoxSelected="CheckBoxPrint" CheckBoxUnselected="UncheckBoxPrint"
-                 Title="Я люблю вчити" Columns="2" Width="400" FontSize="16" Foreground="DarkBlue"
-                 TitleFontWeight="Bold" TitleHorizontalAlignment="Left" FontWeight="Medium">
-            <c:CheckBoxGroup.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF842828" Offset="1"/>
-                    <GradientStop Color="#FF8A2A61" Offset="0.844"/>
-                    <GradientStop Color="#FF75C7D9" Offset="0.21"/>
-                    <GradientStop Color="#FF215CAC" Offset="0.545"/>
-                </LinearGradientBrush>
-            </c:CheckBoxGroup.Background>
-
-            <c:CheckBoxGroup.CheckBoxes>
-                <CheckBox Content="Програмування"/>
-                <CheckBox Content="Дискретну мат."/>
-                <CheckBox Content="Мат. статистику"/>
-                <CheckBox Content="Диф. рівняння"/>
-                <CheckBox Content="Прог. Інженерію"/>
-                <CheckBox Content="Психологію"/>
-                <CheckBox Content="Комп. мережі"/>
-                <CheckBox Content="Бази даних"/>
-            </c:CheckBoxGroup.CheckBoxes>
-        </c:CheckBoxGroup>
-
-        <c:CheckBoxGroup CheckBoxSelected="CheckBoxPrint" CheckBoxUnselected="UncheckBoxPrint"
-         Title="Я люблю вчити" Columns="2" Width="400" FontSize="16" Foreground="DarkBlue"
-         TitleFontWeight="Bold" TitleHorizontalAlignment="Left" FontWeight="Medium" Margin="4">
-            <c:CheckBoxGroup.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFDF4040" Offset="1"/>
-                    <GradientStop Color="#FFD6BB3C" Offset="0.826"/>
-                    <GradientStop Color="#FFAAD73F" Offset="0.667"/>
-                    <GradientStop Color="#FF63CB3D" Offset="0.535"/>
-                    <GradientStop Color="#FF36C989" Offset="0.403"/>
-                    <GradientStop Color="#FF41C3B5" Offset="0.285"/>
-                    <GradientStop Color="#FF458CC3" Offset="0.153"/>
-                    <GradientStop Color="#FFB539CC" Offset="0"/>
-                </LinearGradientBrush>
-            </c:CheckBoxGroup.Background>
-
-            <c:CheckBoxGroup.CheckBoxes>
-                <CheckBox Content="Програмування"/>
-                <CheckBox Content="Дискретну мат."/>
-                <CheckBox Content="Мат. статистику"/>
-                <CheckBox Content="Диф. рівняння"/>
-                <CheckBox Content="Прог. Інженерію"/>
-                <CheckBox Content="Психологію"/>
-                <CheckBox Content="Комп. мережі"/>
-                <CheckBox Content="Бази даних"/>
-            </c:CheckBoxGroup.CheckBoxes>
-        </c:CheckBoxGroup>
+        
     </UniformGrid>
 </Page>

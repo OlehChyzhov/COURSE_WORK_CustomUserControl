@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.Specialized;
-using System.Linq;
-using System.ComponentModel;
+using System.Windows.Documents;
+using System.Windows.Input;
 
-namespace CustomUserControl.Chapter5
+namespace RadioButtonGroupLibrary
 {
-    public partial class RBtnGroupChapter5 : UserControl
+    public partial class RBtnGroupChapter7 : UserControl
     {
         private Guid _groupId;
-        public RBtnGroupChapter5()
+        public RBtnGroupChapter7()
         {
             InitializeComponent();
             DataContext = this;
@@ -24,25 +27,26 @@ namespace CustomUserControl.Chapter5
 
         #region Dependency Properties
         public static DependencyProperty ColumnsProperty = DependencyProperty.Register(nameof(Columns), typeof(int),
-            typeof(RBtnGroupChapter5), new PropertyMetadata(1));
+            typeof(RBtnGroupChapter7), new PropertyMetadata(1));
 
         public static DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(string),
-            typeof(RBtnGroupChapter5), new PropertyMetadata("RadioButton Group"));
+            typeof(RBtnGroupChapter7), new PropertyMetadata("RadioButton Group"));
 
         public static DependencyProperty TitleVisibilityProperty = DependencyProperty.Register(nameof(TitleVisibility), typeof(Visibility),
-            typeof(RBtnGroupChapter5), new PropertyMetadata(Visibility.Visible));
+            typeof(RBtnGroupChapter7), new PropertyMetadata(Visibility.Visible));
 
         public static DependencyProperty TitleHorizontalAlignmentProperty = DependencyProperty.Register(nameof(TitleHorizontalAlignment), typeof(HorizontalAlignment),
-            typeof(RBtnGroupChapter5), new PropertyMetadata(HorizontalAlignment.Left));
+            typeof(RBtnGroupChapter7), new PropertyMetadata(HorizontalAlignment.Left));
 
         public static DependencyProperty TitleFontWeightProperty = DependencyProperty.Register(nameof(TitleFontWeight), typeof(FontWeight),
-            typeof(RBtnGroupChapter5), new PropertyMetadata(FontWeights.Normal));
+            typeof(RBtnGroupChapter7), new PropertyMetadata(FontWeights.Normal));
         #endregion
 
         #region Properties
         [Category("Custom Properties")]
         [Description("Collection of radio buttons.")]
         public ObservableCollection<RadioButton> RadioButtons { get; } = new ObservableCollection<RadioButton>();
+        public Dictionary<string, string> AdditionalInformation { get; } = new Dictionary<string, string>();
 
         [Category("The Most Popular")]
         [Description("Number of columns for all radiobuttons.")]
@@ -101,6 +105,7 @@ namespace CustomUserControl.Chapter5
                 }
             }
         }
+
         private void RadioButtonCheckedResponce(object sender, EventArgs e)
         {
             RadioButton button = (RadioButton)sender;
@@ -112,11 +117,15 @@ namespace CustomUserControl.Chapter5
         private void SubscribeTo(RadioButton radioButton)
         {
             radioButton.Checked += RadioButtonCheckedResponce;
+            radioButton.MouseEnter += RadioButton_MouseEnter;
+            radioButton.MouseLeave += RadioButton_MouseLeave;
         }
 
         private void UnsubscribeTo(RadioButton radioButton)
         {
             radioButton.Checked -= RadioButtonCheckedResponce;
+            radioButton.MouseEnter -= RadioButton_MouseEnter;
+            radioButton.MouseLeave -= RadioButton_MouseLeave;
         }
 
         private void UpdateGroupName(RadioButton btn)
@@ -146,5 +155,27 @@ namespace CustomUserControl.Chapter5
             }
         }
         #endregion
+
+        private void RadioButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            string key = ((RadioButton)sender).Content.ToString();
+            if (AdditionalInformation.ContainsKey(key) == false) return;
+
+            AdornerLayer layer = AdornerLayer.GetAdornerLayer(this);
+            layer.Add(new AdditionalInformationAdorner(this, AdditionalInformation[key]));
+        }
+        private void RadioButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            AdornerLayer layer = AdornerLayer.GetAdornerLayer(this);
+
+            if (layer.GetAdorners(this) != null)
+            {
+                List<Adorner> adorners = layer.GetAdorners(this).ToList();
+                foreach (Adorner adorner in adorners)
+                {
+                    layer.Remove(adorner);
+                }
+            }
+        }
     }
 }
