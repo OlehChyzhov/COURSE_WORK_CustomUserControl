@@ -1,16 +1,19 @@
-﻿using System;
+﻿using RadioButtonGroupLibrary;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 
-namespace RadioButtonGroupLibrary
+namespace RadioButtonGroupLibary
 {
+    [ToolboxBitmap(typeof(RBtnGroupChapter7), "RadioButtonGroupLibary.RBtnGroupChapter7.bmp")]
     public partial class RBtnGroupChapter7 : UserControl
     {
         private Guid _groupId;

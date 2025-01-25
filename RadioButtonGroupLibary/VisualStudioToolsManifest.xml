@@ -1,0 +1,7 @@
+﻿<FileList>
+  <File Reference = "RadioButtonGroupLibary.dll">
+    <ToolboxItems UIFramework="WPF" VSCategory="Managed Package" BlendCategory="Managed Package">
+      <Item Type="RadioButtonGroupLibary.RBtnGroupChapter7" />
+    </ToolboxItems>
+  </File>
+</FileList>

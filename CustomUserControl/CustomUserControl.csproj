@@ -103,14 +103,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Chapter7\DesignTimeAdornerPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter7\RBtnGroupChapter7.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -159,12 +151,6 @@
     </Compile>
     <Compile Include="Chapter6\RBtnGroupChapter6.xaml.cs">
       <DependentUpon>RBtnGroupChapter6.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter7\DesignTimeAdornerPage.xaml.cs">
-      <DependentUpon>DesignTimeAdornerPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter7\RBtnGroupChapter7.xaml.cs">
-      <DependentUpon>RBtnGroupChapter7.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

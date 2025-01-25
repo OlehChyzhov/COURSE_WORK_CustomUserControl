@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Globalization;
 using System.Windows.Input;
-using System.Windows.Controls;
-using System.Linq;
+using RadioButtonGroupLibary;
 
 namespace RadioButtonGroupLibrary
 {
