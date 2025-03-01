@@ -11,11 +11,11 @@
     <description>$description$</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>$copyright$</copyright>
-    <tags>C# WPF UserComponent Radiobutton</tags>
+    <tags>C# WPF UserControl</tags>
   </metadata>
   <files>
 	<file src="icon.png" target="." />
-	<file src="RBtnGroupChapter7.bmp" target="." />
 	<file src="VisualStudioToolsManifest.xml" target="tools/net47/" />
+	<file src="Interfaces/IRadiobuttonGroup.cs" target="Interfaces/" />
   </files>
 </package>

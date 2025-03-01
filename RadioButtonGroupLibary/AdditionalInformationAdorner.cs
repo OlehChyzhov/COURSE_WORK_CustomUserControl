@@ -10,11 +10,11 @@ namespace RadioButtonGroupLibrary
     public class AdditionalInformationAdorner : Adorner
     {
         private string information;
-        private RBtnGroupChapter7 RadioButtonGroup;
+        private RadioButtonGroup RadioButtonGroup;
         public AdditionalInformationAdorner(UIElement element, string info) : base(element)
         {
             information = info;
-            RadioButtonGroup = (RBtnGroupChapter7)element;
+            RadioButtonGroup = (RadioButtonGroup)element;
         }
 
         protected override void OnRender(DrawingContext drawingContext)

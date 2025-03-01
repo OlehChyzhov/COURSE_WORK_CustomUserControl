@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="RadioButtonGroupLibary.RBtnGroupChapter7"
+﻿<UserControl x:Class="RadioButtonGroupLibary.RadioButtonGroup"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RadioButtonGroupLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="600">
+             d:DesignHeight="300" d:DesignWidth="300">
     
     <UserControl.Resources>
         <local:ColumnToHorizontalAlignmentConverter x:Key="ColumnConverter"/>
@@ -19,7 +19,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Visibility="{Binding TitleVisibility}">
-                <TextBlock d:Text="Хто ви з мультика 'Губка Боб' ?"
+                <TextBlock d:Text="Напис"
                    Text="{Binding Title}"
                    FontWeight="{Binding TitleFontWeight}"
                    HorizontalAlignment="{Binding TitleHorizontalAlignment}"
@@ -36,16 +36,16 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
 
-                <d:RadioButton Content="Сенді Чікс"/>
-                <d:RadioButton Content="Юджин Крабс"/>
-                <d:RadioButton Content="Ґері Уілсон"/>
-                <d:RadioButton Content="Місіс Пафф"/>
-                <d:RadioButton Content="Карен"/>
-                <d:RadioButton Content="Ларрі Лобстер"/>
-                <d:RadioButton Content="Шелдон Пітер Джей Планктон"/>
-                <d:RadioButton Content="Роберт Гарольд 'Губка Боб'"/>
-                <d:RadioButton Content="Сквідвард Джей Куїнсі"/>
-                <d:RadioButton Content="Патрік зірка"/>
+                <d:RadioButton Content="1"/>
+                <d:RadioButton Content="2"/>
+                <d:RadioButton Content="3"/>
+                <d:RadioButton Content="4"/>
+                <d:RadioButton Content="5"/>
+                <d:RadioButton Content="6"/>
+                <d:RadioButton Content="7"/>
+                <d:RadioButton Content="8"/>
+                <d:RadioButton Content="9"/>
+                <d:RadioButton Content="10"/>
             </ItemsControl>
         </Grid>
     </Border>

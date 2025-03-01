@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,51 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Chapter1\Components\StagedProgressBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter1\Pages\StagedPBPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter1\Pages\StagedPBTemplatePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter2\RBtnGroupChapter2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter3\Pages\AttachedPropExamplePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter3\Pages\DependencyPropExamplePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter4\RadioButtonGroupPageChapter4.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter4\RBtnGroupChapter4.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter5\RadioButtonGroupPageChapter5.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter5\RBtnGroupChapter5.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter6\Adorners.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Chapter6\RBtnGroupChapter6.xaml">
+    <Page Include="StagedProgressBar\Pages\StagedPBTemplatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -111,68 +69,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Chapter1\Components\StagedProgressBar.xaml.cs">
-      <DependentUpon>StagedProgressBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter1\Pages\StagedPBPage.xaml.cs">
-      <DependentUpon>StagedPBPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter1\Pages\StagedPBTemplatePage.xaml.cs">
+    <Compile Include="StagedProgressBar\Pages\StagedPBTemplatePage.xaml.cs">
       <DependentUpon>StagedPBTemplatePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter2\RBtnGroupChapter2.xaml.cs">
-      <DependentUpon>RBtnGroupChapter2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter3\Components\AttachedPropService.cs" />
-    <Compile Include="Chapter3\Components\CustomControl.cs" />
-    <Compile Include="Chapter3\Pages\AttachedPropExamplePage.xaml.cs">
-      <DependentUpon>AttachedPropExamplePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter3\Pages\DependencyPropExamplePage.xaml.cs">
-      <DependentUpon>DependencyPropExamplePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter4\ColumnToHorizontalAlignmentConverter.cs" />
-    <Compile Include="Chapter4\RadioButtonGroupPageChapter4.xaml.cs">
-      <DependentUpon>RadioButtonGroupPageChapter4.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter4\RBtnGroupChapter4.xaml.cs">
-      <DependentUpon>RBtnGroupChapter4.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter5\RadioButtonGroupEventArgs.cs" />
-    <Compile Include="Chapter5\RadioButtonGroupPageChapter5.xaml.cs">
-      <DependentUpon>RadioButtonGroupPageChapter5.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter5\RBtnGroupChapter5.xaml.cs">
-      <DependentUpon>RBtnGroupChapter5.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter6\AdditionalInformationAdorner.cs" />
-    <Compile Include="Chapter6\Adorners.xaml.cs">
-      <DependentUpon>Adorners.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter6\RBtnGroupChapter6.xaml.cs">
-      <DependentUpon>RBtnGroupChapter6.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Final\CheckBoxGroupPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Final\RadioButtonGroupPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Final\CheckBoxGroupPage.xaml.cs">
-      <DependentUpon>CheckBoxGroupPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Final\RadioButtonGroupPage.xaml.cs">
-      <DependentUpon>RadioButtonGroupPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Chapter1\Components\Helper.cs" />
+    <Compile Include="StagedProgressBar\Components\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -205,10 +111,6 @@
     <Resource Include="Images\No.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CheckBoxGroupLibrary\CheckBoxGroupLibrary.csproj">
-      <Project>{c8379ed3-c7fc-4bfc-9d26-429afdca7adb}</Project>
-      <Name>CheckBoxGroupLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RadioButtonGroupLibary\RadioButtonGroupLibary.csproj">
       <Project>{dc22213e-64a6-4582-8292-50dd389b7724}</Project>
       <Name>RadioButtonGroupLibary</Name>

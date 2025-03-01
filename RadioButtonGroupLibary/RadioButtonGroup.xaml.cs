@@ -1,4 +1,5 @@
-﻿using RadioButtonGroupLibrary;
+﻿using RadioButtonGroupLibary.Interfaces;
+using RadioButtonGroupLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,42 +14,53 @@ using System.Windows.Input;
 
 namespace RadioButtonGroupLibary
 {
-    [ToolboxBitmap(typeof(RBtnGroupChapter7), "RadioButtonGroupLibary.RBtnGroupChapter7.bmp")]
-    public partial class RBtnGroupChapter7 : UserControl
+    [ToolboxBitmap(typeof(RadioButtonGroup), "RadioButtonGroupLibary.RadioButtonGroup.bmp")]
+    public partial class RadioButtonGroup : UserControl, IRadiobuttonGroup
     {
         private Guid _groupId;
-        public RBtnGroupChapter7()
+        public RadioButtonGroup()
         {
             InitializeComponent();
             DataContext = this;
             _groupId = Guid.NewGuid();
-            RadioButtons.CollectionChanged += RadioButtonsChanged;
         }
+
         [Category("Custom Events")]
         [Description("Executes when the radiobutton is selected.")]
         public event EventHandler<RadioButtonGroupEventArgs> RadioButtonSelected;
 
         #region Dependency Properties
+        public static DependencyProperty RadioButtonNamesProperty = DependencyProperty.Register(nameof(RadioButtonNames), typeof(string),
+            typeof(RadioButtonGroup), new PropertyMetadata("", RadioButtonNamesPropertyChanged));
+
         public static DependencyProperty ColumnsProperty = DependencyProperty.Register(nameof(Columns), typeof(int),
-            typeof(RBtnGroupChapter7), new PropertyMetadata(1));
+            typeof(RadioButtonGroup), new PropertyMetadata(1));
 
         public static DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(string),
-            typeof(RBtnGroupChapter7), new PropertyMetadata("RadioButton Group"));
+            typeof(RadioButtonGroup), new PropertyMetadata("RadioButton Group"));
 
         public static DependencyProperty TitleVisibilityProperty = DependencyProperty.Register(nameof(TitleVisibility), typeof(Visibility),
-            typeof(RBtnGroupChapter7), new PropertyMetadata(Visibility.Visible));
+            typeof(RadioButtonGroup), new PropertyMetadata(Visibility.Visible));
 
         public static DependencyProperty TitleHorizontalAlignmentProperty = DependencyProperty.Register(nameof(TitleHorizontalAlignment), typeof(HorizontalAlignment),
-            typeof(RBtnGroupChapter7), new PropertyMetadata(HorizontalAlignment.Left));
+            typeof(RadioButtonGroup), new PropertyMetadata(HorizontalAlignment.Left));
 
         public static DependencyProperty TitleFontWeightProperty = DependencyProperty.Register(nameof(TitleFontWeight), typeof(FontWeight),
-            typeof(RBtnGroupChapter7), new PropertyMetadata(FontWeights.Normal));
+            typeof(RadioButtonGroup), new PropertyMetadata(FontWeights.Normal));
         #endregion
 
         #region Properties
         [Category("Custom Properties")]
         [Description("Collection of radio buttons.")]
-        public ObservableCollection<RadioButton> RadioButtons { get; } = new ObservableCollection<RadioButton>();
+        public ObservableCollection<RadioButton> RadioButtons { get; set; } = new ObservableCollection<RadioButton>();
+
+        [Category("The Most Popular")]
+        [Description("Names of the Radiobuttons.")]
+        public string RadioButtonNames
+        {
+            get => (string)GetValue(RadioButtonNamesProperty);
+            set => SetValue(RadioButtonNamesProperty, value);
+        }
         public Dictionary<string, string> AdditionalInformation { get; } = new Dictionary<string, string>();
 
         [Category("The Most Popular")]
@@ -88,24 +100,62 @@ namespace RadioButtonGroupLibary
         }
         #endregion
 
-        #region Callbacks
-        private void RadioButtonsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        #region Public Methods
+        [Category("Custom Methods")]
+        [Description("Creates a radio button.")]
+        public RadioButton CreateButton(string content)
         {
-            if (e.OldItems != null)
+            RadioButton button = new RadioButton()
             {
-                foreach (RadioButton button in e.OldItems)
-                {
-                    UnsubscribeTo(button);
-                }
+                Content = content,
+                GroupName = $"{_groupId}",
+            };
+            button.Checked += RadioButtonCheckedResponce;
+            button.MouseEnter += RadioButton_MouseEnter;
+            button.MouseLeave += RadioButton_MouseLeave;
+
+            return button;
+        }
+
+        [Category("Custom Methods")]
+        [Description("Adds a radio button to the group.")]
+        public void DisplayButton(RadioButton button)
+        {
+            RadioButtons.Add(button);
+        }
+
+        [Category("Custom Methods")]
+        [Description("Removes first radio button from the group based on the content.")]
+        public void RemoveByContent(string buttonContent)
+        {
+            RadioButton button = RadioButtons.FirstOrDefault(btn => btn.Content.ToString() == buttonContent);
+            if (button != null)
+            {
+                button.Checked -= RadioButtonCheckedResponce;
+                button.MouseEnter -= RadioButton_MouseEnter;
+                button.MouseLeave -= RadioButton_MouseLeave;
+                RadioButtons.Remove(button);
+            }
+        }
+        #endregion
+
+        #region Callbacks
+        private static void RadioButtonNamesPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            RadioButtonGroup group = (RadioButtonGroup)d;
+
+            string oldButtonString = e.OldValue.ToString();
+            string newButtonString = e.NewValue.ToString();
+
+            foreach (string btnContent in oldButtonString.Split(','))
+            {
+                group.RemoveByContent(btnContent);
             }
 
-            if (e.NewItems != null)
+            foreach (string btnContent in newButtonString.Split(','))
             {
-                foreach (RadioButton button in e.NewItems)
-                {
-                    UpdateGroupName(button);
-                    SubscribeTo(button);
-                }
+                RadioButton button = group.CreateButton(btnContent);
+                group.DisplayButton(button);
             }
         }
 
@@ -116,49 +166,7 @@ namespace RadioButtonGroupLibary
         }
         #endregion
 
-        #region Private Methods
-        private void SubscribeTo(RadioButton radioButton)
-        {
-            radioButton.Checked += RadioButtonCheckedResponce;
-            radioButton.MouseEnter += RadioButton_MouseEnter;
-            radioButton.MouseLeave += RadioButton_MouseLeave;
-        }
-
-        private void UnsubscribeTo(RadioButton radioButton)
-        {
-            radioButton.Checked -= RadioButtonCheckedResponce;
-            radioButton.MouseEnter -= RadioButton_MouseEnter;
-            radioButton.MouseLeave -= RadioButton_MouseLeave;
-        }
-
-        private void UpdateGroupName(RadioButton btn)
-        {
-            btn.GroupName = $"{_groupId}";
-        }
-        #endregion
-
-        #region Public Methods
-        [Category("Custom Methods")]
-        [Description("Adds a radio button to the group.")]
-        public void Add(RadioButton button)
-        {
-            SubscribeTo(button);
-            UpdateGroupName(button);
-            RadioButtons.Add(button);
-        }
-
-        [Category("Custom Methods")]
-        [Description("Removes radio buttons matching a given filter.")]
-        public void RemoveButtons(Func<RadioButton, bool> filter)
-        {
-            foreach (RadioButton button in RadioButtons.Where(filter))
-            {
-                UnsubscribeTo(button);
-                RadioButtons.Remove(button);
-            }
-        }
-        #endregion
-
+        #region Adorners
         private void RadioButton_MouseEnter(object sender, MouseEventArgs e)
         {
             string key = ((RadioButton)sender).Content.ToString();
@@ -180,5 +188,6 @@ namespace RadioButtonGroupLibary
                 }
             }
         }
+        #endregion
     }
 }

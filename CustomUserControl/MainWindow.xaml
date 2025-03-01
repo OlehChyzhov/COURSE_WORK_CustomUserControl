@@ -4,28 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomUserControl"
+        xmlns:c="clr-namespace:RadioButtonGroupLibary;assembly=RadioButtonGroupLibary"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="1200">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <ScrollViewer>
-            <StackPanel Width="200">
-                <Button Content="C1. Staged PB" FontSize="16" Padding="5" Click="StagedPB"/>
-                <Button Content="C1. Staged PB Template" FontSize="16" Padding="5" Click="StagedPBTemplate"/>
-                <Button Content="C2. Dependency Property" FontSize="16" Padding="5" Click="DependencyPropPage"/>
-                <Button Content="C3. Attached Property" FontSize="16" Padding="5" Click="AttachedPropPage"/>
-                <Button Content="C4. Design" FontSize="16" Padding="5" Click="Chapter4Design"/>
-                <Button Content="C5. Functionality" FontSize="16" Padding="5" Click="Chapter5Functionality"/>
-                <Button Content="C6. Adorners" FontSize="16" Padding="5" Click="Chapter6Adorners"/>
-                
-                <Button Content="Final. RadioButtonGroup" FontSize="16" Padding="5" Click="RadioButtonGroup"/>
-                <Button Content="Final. CheckBoxGroup" FontSize="16" Padding="5" Click="CheckBoxGroup"/>
-            </StackPanel>
-        </ScrollViewer>
-        <Frame Grid.Column="1" x:Name="MainFrame"/>
+        <c:RadioButtonGroup RadioButtonNames="Button 1,Button 2">
+            
+        </c:RadioButtonGroup>
     </Grid>
 </Window>

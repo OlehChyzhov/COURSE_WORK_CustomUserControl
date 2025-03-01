@@ -7,7 +7,7 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RaidobuttonGroup")]
+[assembly: AssemblyTitle("RadiobuttonGroup")]
 [assembly: AssemblyDescription("Group of radiobuttons")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Oleh")]
@@ -51,6 +51,6 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.1.1")]
-[assembly: AssemblyFileVersion("2.0.1.1")]
+[assembly: AssemblyVersion("2.0.1.4")]
+[assembly: AssemblyFileVersion("2.0.1.4")]
 [assembly: Guid("23242324-2324-2324-2324-232423242324")]
