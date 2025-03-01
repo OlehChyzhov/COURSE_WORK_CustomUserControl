@@ -5,11 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomUserControl"
         xmlns:c="clr-namespace:RadioButtonGroupLibary;assembly=RadioButtonGroupLibary"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1200">
+        Title="MainWindow" Height="600" Width="1200">
     <Grid>
-        <c:RadioButtonGroup RadioButtonNames="Button 1,Button 2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Піца для бідних студентів ЛНУ" FontSize="20" HorizontalAlignment="Center"/>
+        
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             
-        </c:RadioButtonGroup>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <c:RadioButtonGroup Grid.Column="0" Grid.Row="0" Title="Тісто для піци" TitleHorizontalAlignment="Center" 
+                                RadioButtonNames="Тонке,Грубе,Стандартне,Я просто начинку в рот закину" Columns="2" TitleFontWeight="Bold" FontSize="18"
+                                RadioButtonSelected="Dough_Selection">
+                <c:RadioButtonGroup.AdditionalInformation>
+                    <sys:String x:Key="Тонке">20 гривень</sys:String>
+                    <sys:String x:Key="Стандартне">40 гривень</sys:String>
+                    <sys:String x:Key="Грубе">60 гривень</sys:String>
+                    <sys:String x:Key="Я просто начинку в рот закину">Медпункт опіками не займається</sys:String>
+                </c:RadioButtonGroup.AdditionalInformation>
+            </c:RadioButtonGroup>
+
+            <c:RadioButtonGroup Grid.Column="1" Grid.Row="0" Title="Начинка" TitleHorizontalAlignment="Center" FontSize="18" TitleFontWeight="Bold"
+                                RadioButtonNames="Багато м'яса,Багато сиру,Багато м'яса та сиру,Помазайте кетчупом дорогим" Columns="2"
+                                RadioButtonSelected="Filling_Selection">
+                <c:RadioButtonGroup.AdditionalInformation>
+                    <sys:String x:Key="Помазайте кетчупом дорогим">Дешево та сердито</sys:String>
+                </c:RadioButtonGroup.AdditionalInformation>
+            </c:RadioButtonGroup>
+
+            <c:RadioButtonGroup Grid.Column="0" Grid.Row="1" Title="Додавати ананаси?" TitleHorizontalAlignment="Center" FontSize="18" TitleFontWeight="Bold" RadioButtonNames="Так,Ні"
+                                RadioButtonSelected="Pineapples_Selection"/>
+
+            <c:RadioButtonGroup Grid.Column="1" Grid.Row="1" Title="Чи бажаєте щось випити?" TitleHorizontalAlignment="Center" FontSize="18" TitleFontWeight="Bold" 
+                                RadioButtonNames="Енергетик,Чай,Кава,В мене з собою є,Вода,Алкоголь" Columns="3" RadioButtonSelected="Drink_Selection"/>
+
+            <c:RadioButtonGroup Grid.Column="0" Grid.Row="2" Title="А гроші у вас є?" TitleHorizontalAlignment="Center" FontSize="18" TitleFontWeight="Bold" 
+                                RadioButtonNames="Гроші?,Нема,Мама потім принесе" Columns="3" RadioButtonSelected="Have_Money"/>
+            
+            <c:RadioButtonGroup Grid.Column="1" Grid.Row="2" Title="Чи є у вас судимість?" TitleHorizontalAlignment="Center" FontSize="18" TitleFontWeight="Bold" 
+                                RadioButtonNames="Звісно,Поки ні,А треба?" Columns="3" RadioButtonSelected="Criminal_Record"/>
+
+            <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Width="200" Height="100" Content="Замовити" FontSize="30" Click="Make_Order"/>
+        </Grid>
     </Grid>
 </Window>
