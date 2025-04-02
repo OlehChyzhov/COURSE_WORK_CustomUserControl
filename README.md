@@ -20,4 +20,4 @@ The primary goal of this project is to develop a custom WPF component that exten
 - Seamless integration with existing WPF applications.
 
 ## Images
-![Test Project](Assets/LoginWindow.png)
+![Test Project](Assets/Project.png)
