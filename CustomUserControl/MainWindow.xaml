@@ -57,7 +57,7 @@
                                 RadioButtonNames="Гроші?,Нема,Мама потім принесе" Columns="3" RadioButtonSelected="Have_Money"/>
             
             <c:RadioButtonGroup Grid.Column="1" Grid.Row="2" Title="Чи є у вас судимість?" TitleHorizontalAlignment="Center" FontSize="18" TitleFontWeight="Bold" 
-                                RadioButtonNames="Звісно,Поки ні,А треба?" Columns="3" RadioButtonSelected="Criminal_Record"/>
+                                RadioButtonNames="Звісно,Поки ні,А треба?,А в кого її немає?" Columns="2" RadioButtonSelected="Criminal_Record"/>
 
             <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Width="200" Height="100" Content="Замовити" FontSize="30" Click="Make_Order"/>
         </Grid>

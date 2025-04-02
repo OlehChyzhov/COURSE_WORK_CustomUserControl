@@ -44,7 +44,7 @@ namespace CustomUserControl
                     ((RadioButtonGroup)sender).RemoveByContent("Енергетик");
                     break;
                 case "Чай":
-                    MessageBox.Show("Чаю нема!", "Вибачте", MessageBoxButton.OK, MessageBoxImage.Information);    
+                    MessageBox.Show("На жаль, чаю нема", "О ні! Як так сталось?", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     ((RadioButtonGroup)sender).RemoveByContent("Чай");
                     break;
                 case "Кава":
@@ -67,7 +67,7 @@ namespace CustomUserControl
 
         private void Have_Money(object sender, RadioButtonGroupEventArgs e)
         {
-
+            // Долари, євро? 
         }
 
         private void Criminal_Record(object sender, RadioButtonGroupEventArgs e)
