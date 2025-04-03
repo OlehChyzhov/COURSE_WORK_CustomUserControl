@@ -13,11 +13,5 @@ The primary goal of this project is to develop a custom WPF component that exten
 - Ensure flexibility, design consistency, and reusability.
 - Demonstrate the integration of the created component into real-world projects.
 
-## Features
-- Customizable WPF component.
-- Support for data binding, styles, and templates.
-- Modular and reusable design.
-- Seamless integration with existing WPF applications.
-
 ## Images
 ![Test Project](Assets/Project.png)
